@@ -7,8 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.back.*;
-import com.formdev.flatlaf.FlatDarkLaf;
-import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 
 import java.awt.Color;
@@ -20,14 +18,13 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 
-import java.awt.Label;
 import java.awt.Font;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+
 import javax.swing.JTextField;
-import javax.swing.UIManager;
 import java.awt.Cursor;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -36,16 +33,23 @@ import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.JSeparator;
 import javax.swing.JProgressBar;
+import java.awt.Insets;
 
 public class MainApp extends JFrame {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	int xMouse, yMouse;
 	
 	JFileChooser chooseFileInput; 
@@ -53,6 +57,9 @@ public class MainApp extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtFileInputLocation;
 	private JTextField txtFileOutputLocation;
+	JProgressBar progressBar;
+	@SuppressWarnings("rawtypes")
+	JComboBox boxTypeToConvert;
 	
 
 	/**
@@ -76,8 +83,6 @@ public class MainApp extends JFrame {
 				try {
 					MainApp frame = new MainApp();
 					frame.setVisible(true);
-					PDF2HTML pdf2html = new PDF2HTML("D:\\Jason\\Docs\\asd.pdf","D:\\Jason\\Lenguajes\\Java\\PDF-Converter\\src\\output\\pdf.html");
-					
 				} catch (Exception e) {
 					e.printStackTrace();
 					System.out.println(e.getMessage());
@@ -89,7 +94,9 @@ public class MainApp extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public MainApp() {
+		setTitle("PDF2FILE");
 		setLocationByPlatform(true);
 		setFocusTraversalKeysEnabled(false);
 		setFocusCycleRoot(false);
@@ -131,7 +138,7 @@ public class MainApp extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnSelectFileInput = new JButton("Select file");
+		JButton btnSelectFileInput = new JButton("SELECT FILE");
 		btnSelectFileInput.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				chooseFileInput = new JFileChooser(); 
@@ -162,10 +169,11 @@ public class MainApp extends JFrame {
 		separator.setBounds(223, 68, 90, 14);
 		contentPane.add(separator);
 		btnSelectFileInput.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-		btnSelectFileInput.setBounds(351, 92, 104, 28);
+		btnSelectFileInput.setBounds(351, 92, 112, 28);
 		contentPane.add(btnSelectFileInput);
 		
-		JButton btnSelectFolderOutput = new JButton("Select folder");
+		JButton btnSelectFolderOutput = new JButton("SELECT FOLDER");
+		btnSelectFolderOutput.setMargin(new Insets(0, 0, 0, 0));
 		btnSelectFolderOutput.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				chooseFileInput = new JFileChooser(); 
@@ -193,15 +201,95 @@ public class MainApp extends JFrame {
 			}
 		});
 		btnSelectFolderOutput.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
-		btnSelectFolderOutput.setBounds(351, 132, 104, 28);
+		btnSelectFolderOutput.setBounds(351, 132, 112, 28);
 		contentPane.add(btnSelectFolderOutput);
 		
 		JButton btnConvert = new JButton("CONVERT");
+		btnConvert.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						try 
+						{
+							if(txtFileInputLocation.getText().isBlank())
+								JOptionPane.showMessageDialog(null,"Please select file to convert.","Error File not Selected!",JOptionPane.INFORMATION_MESSAGE);
+							if(txtFileOutputLocation.getText().isBlank())
+								JOptionPane.showMessageDialog(null,"Please select folder to output file converted.","Error Folder not Selected!",JOptionPane.INFORMATION_MESSAGE);
+								
+								
+							if(!txtFileInputLocation.getText().isBlank() && !txtFileOutputLocation.getText().isBlank()) {
+								
+								
+								PDF2HTML pdf2html;
+								
+								String extensionFile = "." + boxTypeToConvert.getSelectedItem().toString().toLowerCase();
+								
+								Object typeConvertionFile = new Object();
+	
+								
+								
+								switch(extensionFile) {
+									case ".docx":
+										pdf2html = new PDF2HTML(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
+										typeConvertionFile = pdf2html;
+										break;
+									case ".jpeg":
+										pdf2html = new PDF2HTML(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
+										typeConvertionFile = pdf2html;
+										break;
+									case ".jpg":
+										pdf2html = new PDF2HTML(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
+										typeConvertionFile = pdf2html;
+										break;
+									case ".gif":
+										pdf2html = new PDF2HTML(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
+										typeConvertionFile = pdf2html;
+										break;
+									case ".html":
+										pdf2html = new PDF2HTML(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
+										typeConvertionFile = pdf2html;
+										break;
+									case ".png":
+										pdf2html = new PDF2HTML(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
+										typeConvertionFile = pdf2html;
+										break;
+									case ".txt":
+										pdf2html = new PDF2HTML(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
+										typeConvertionFile = pdf2html;
+										break;
+									case ".tiff":
+										pdf2html = new PDF2HTML(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
+										typeConvertionFile = pdf2html;
+										break;
+									default:
+										pdf2html = null;
+										typeConvertionFile = pdf2html;
+										break;
+								}
+								
+								
+								
+								Thread t1 = new Thread((Runnable)typeConvertionFile);
+								t1.start();
+							} 
+						}
+						catch (Exception e) 
+						{
+							e.printStackTrace();
+							System.out.println(e.getMessage());
+						}
+					}
+					
+				});
+				
+				
+			}
+		});
 		btnConvert.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 21));
 		btnConvert.setBounds(153, 186, 160, 46);
 		contentPane.add(btnConvert);
 		
-		JComboBox boxTypeToConvert = new JComboBox();
+		boxTypeToConvert = new JComboBox();
 		boxTypeToConvert.setBackground(new Color(35, 35, 35));
 		boxTypeToConvert.setBorder(new CompoundBorder());
 		boxTypeToConvert.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 21));
@@ -276,9 +364,8 @@ public class MainApp extends JFrame {
 		PDFTO.setBounds(77, 26, 135, 48);
 		bg.add(PDFTO);
 		
-		JProgressBar progressBar = new JProgressBar();
+		progressBar = new JProgressBar();
 		progressBar.setRequestFocusEnabled(false);
-		progressBar.setValue(100);
 		progressBar.setBounds(147, 165, 161, 12);
 		bg.add(progressBar);
 	}
