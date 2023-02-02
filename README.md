@@ -5,10 +5,18 @@
 Pictures of first look.
 
 
-![Picture1](https://user-images.githubusercontent.com/54054526/216237335-7100ec1c-1c9d-4556-ba61-5e5c0a061904.png)
+![image](https://user-images.githubusercontent.com/54054526/216270043-98ff0e2b-05ec-41f4-94b9-611aeab1cd01.png)
 
 
-![Picture2](https://user-images.githubusercontent.com/54054526/216237323-580913bd-942c-4476-a014-2b00264068c6.png)
+
+![image](https://user-images.githubusercontent.com/54054526/216270154-75282ae8-d9aa-40bc-8c22-195716cf37ad.png)
+
+
+![image](https://user-images.githubusercontent.com/54054526/216270279-7f226387-363e-41b0-a4fe-cd3a44d9d3c4.png)
+
+
+![image](https://user-images.githubusercontent.com/54054526/216270515-2d81b43a-050e-48fe-ba34-654422095211.png)
+
 
 
 
