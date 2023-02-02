@@ -30,7 +30,10 @@ public class PDF2HTML implements Runnable {
 			File _filePathInput = new File(filePathInput);
 			PDDocument pdf = PDDocument.load(_filePathInput);
 		    Writer output = new PrintWriter(filePathOutput, "utf-8");
-		    new PDFDomTree().writeText(pdf, output);
+		    PDFDomTree pdfDomTree = new PDFDomTree();
+		    pdfDomTree.writeText(pdf, output);
+			File _filePathOutput = new File(filePathOutput);
+		    System.out.println(_filePathOutput.length());
 		    output.close();
 		}
 		catch(Exception e) 
