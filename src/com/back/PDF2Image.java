@@ -2,8 +2,6 @@ package com.back;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.PrintWriter;
-import java.io.Writer;
 
 import javax.swing.JProgressBar;
 
@@ -11,22 +9,11 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.ImageType;
 import org.apache.pdfbox.rendering.PDFRenderer;
 import org.apache.pdfbox.tools.imageio.ImageIOUtil;
-import org.fit.pdfdom.PDFDomTree;
 
-public class PDF2Image implements Runnable{
-
-	String filePathInput;
-	String filePathOutput;
-	String extensionOutput;
-	JProgressBar progressBar;
-	long fileSizePDF;
-	long fileSizeImage;
+public class PDF2Image extends PDF2File{
 	
 	public PDF2Image(String _filePathInput, String _filePathOutput, String _extensionOutput, JProgressBar _progressBar) {
-		this.filePathInput = _filePathInput;
-		this.filePathOutput = _filePathOutput;
-		this.extensionOutput = _extensionOutput;
-		this.progressBar = _progressBar;
+		super(_filePathInput,_filePathOutput,_extensionOutput, _progressBar);
 	}
 	
 

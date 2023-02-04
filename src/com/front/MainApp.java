@@ -65,6 +65,8 @@ public class MainApp extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		
 		try {
 		    for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
 		        if ("Nimbus".equals(info.getName())) {
@@ -271,6 +273,9 @@ public class MainApp extends JFrame {
 								
 								Thread t1 = new Thread((Runnable)typeConvertionFile);
 								t1.start();
+								while(t1.isAlive()){
+									System.out.println(t1.isAlive());
+								}
 							} 
 						}
 						catch (Exception e) 

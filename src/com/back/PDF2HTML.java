@@ -9,20 +9,10 @@ import javax.swing.JProgressBar;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.fit.pdfdom.PDFDomTree;
 
-public class PDF2HTML implements Runnable {
-	
-	String filePathInput;
-	String filePathOutput;
-	String extensionOutput;
-	JProgressBar progressBar;
-	long fileSizePDF;
-	long fileSizeHTML;
+public class PDF2HTML extends PDF2File{
 	
 	public PDF2HTML(String _filePathInput, String _filePathOutput, String _extensionOutput, JProgressBar _progressBar) {
-		this.filePathInput = _filePathInput;
-		this.filePathOutput = _filePathOutput;
-		this.extensionOutput = _extensionOutput;
-		this.progressBar = _progressBar;
+		super(_filePathInput,_filePathOutput,_extensionOutput, _progressBar);
 	}
 	
 	@Override
@@ -55,6 +45,5 @@ public class PDF2HTML implements Runnable {
 		}
 		progressBar.setIndeterminate(false);
 		progressBar.setValue(100);
-		
 	}
 }
