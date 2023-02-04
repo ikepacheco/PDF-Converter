@@ -1,21 +1,24 @@
-# PDF-Converter (STILL IN PROGRESS)
+# PDF-Converter
 
 # Can convert PDF files to some type of files: .docx, .jpeg, .jpg, .gif, .html, .png, .txt, .tiff.
  
 Pictures of first look.
 
 
-![image](https://user-images.githubusercontent.com/54054526/216270043-98ff0e2b-05ec-41f4-94b9-611aeab1cd01.png)
+![image](https://user-images.githubusercontent.com/54054526/216751989-2f03b2f0-07f0-4453-8299-881783378264.png)
 
 
 
-![image](https://user-images.githubusercontent.com/54054526/216270154-75282ae8-d9aa-40bc-8c22-195716cf37ad.png)
+![image](https://user-images.githubusercontent.com/54054526/216752004-9d8e31d0-eb94-4c50-ae90-53cb7b454c69.png)
 
 
-![image](https://user-images.githubusercontent.com/54054526/216270279-7f226387-363e-41b0-a4fe-cd3a44d9d3c4.png)
+![image](https://user-images.githubusercontent.com/54054526/216752032-8e093d77-3585-465c-9a80-f8b98e0a8d5a.png)
 
 
-![image](https://user-images.githubusercontent.com/54054526/216270515-2d81b43a-050e-48fe-ba34-654422095211.png)
+![image](https://user-images.githubusercontent.com/54054526/216752156-b31929cf-26c3-4886-8476-a5fbf462b1f3.png)
+
+![image](https://user-images.githubusercontent.com/54054526/216752250-5a2e6b70-a5c9-481d-a2e1-e3fd2f117495.png)
+
 
 
 
