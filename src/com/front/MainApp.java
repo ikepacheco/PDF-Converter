@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.back.*;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
@@ -60,6 +61,7 @@ public class MainApp extends JFrame {
 	@SuppressWarnings("rawtypes")
 	JComboBox boxTypeToConvert;
 	JProgressBar progressBar;
+	JLabel lblConvertingLog;
 
 	/**
 	 * Launch the application.
@@ -145,6 +147,9 @@ public class MainApp extends JFrame {
 				chooseFileInput = new JFileChooser(); 
 				chooseFileInput.setCurrentDirectory(new java.io.File("."));
 				chooseFileInput.setDialogTitle("Select Folder");
+				FileNameExtensionFilter imageFilter = new FileNameExtensionFilter("PDF", "pdf");
+				
+				chooseFileInput.setFileFilter(imageFilter);
 			    //
 			    // disable the "All files" option.
 			    //
@@ -221,9 +226,10 @@ public class MainApp extends JFrame {
 								
 							if(!txtFileInputLocation.getText().isBlank() && !txtFileOutputLocation.getText().isBlank()) {
 								
-								
+								PDF2Word pdf2word;
 								PDF2HTML pdf2html;
 								PDF2Image pdf2image;
+								PDF2TXT pdf2txt;
 								
 								String extensionFile = "." + boxTypeToConvert.getSelectedItem().toString().toLowerCase();
 								
@@ -233,34 +239,35 @@ public class MainApp extends JFrame {
 								
 								switch(extensionFile) {
 									case ".docx":
-										pdf2html = new PDF2HTML(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
-										typeConvertionFile = pdf2html;
+										pdf2word = new PDF2Word(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar, lblConvertingLog, btnConvert);
+										typeConvertionFile = pdf2word;
 										break;
 									case ".jpeg":
-										pdf2image = new PDF2Image(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
+										pdf2image = new PDF2Image(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar, lblConvertingLog, btnConvert);
 										typeConvertionFile = pdf2image;
 										break;
 									case ".jpg":
-										pdf2image = new PDF2Image(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
+										pdf2image = new PDF2Image(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar, lblConvertingLog, btnConvert);
 										typeConvertionFile = pdf2image;
 										break;
 									case ".gif":
-										pdf2image = new PDF2Image(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
+										pdf2image = new PDF2Image(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar, lblConvertingLog, btnConvert);
 										typeConvertionFile = pdf2image;
 										break;
 									case ".html":
-										pdf2html = new PDF2HTML(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
+										pdf2html = new PDF2HTML(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar, lblConvertingLog, btnConvert);
 										typeConvertionFile = pdf2html;
 										break;
 									case ".png":
-										pdf2image = new PDF2Image(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
+										pdf2image = new PDF2Image(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar, lblConvertingLog, btnConvert);
 										typeConvertionFile = pdf2image;
 										break;
 									case ".txt":
-										
+										pdf2txt = new PDF2TXT(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar, lblConvertingLog, btnConvert);
+										typeConvertionFile = pdf2txt;
 										break;
 									case ".tiff":
-										pdf2image = new PDF2Image(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
+										pdf2image = new PDF2Image(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar, lblConvertingLog, btnConvert);
 										typeConvertionFile = pdf2image;
 										break;
 									default:
@@ -273,9 +280,6 @@ public class MainApp extends JFrame {
 								
 								Thread t1 = new Thread((Runnable)typeConvertionFile);
 								t1.start();
-								while(t1.isAlive()){
-									System.out.println(t1.isAlive());
-								}
 							} 
 						}
 						catch (Exception e) 
@@ -378,5 +382,15 @@ public class MainApp extends JFrame {
 		PDFTO.setHorizontalTextPosition(SwingConstants.RIGHT);
 		PDFTO.setBounds(77, 26, 135, 48);
 		bg.add(PDFTO);
+		
+		lblConvertingLog = DefaultComponentFactory.getInstance().createLabel("--");
+		lblConvertingLog.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 11));
+		lblConvertingLog.setBounds(149, 157, 199, 16);
+		bg.add(lblConvertingLog);
+		
+		JLabel lblNewJgoodiesLabel = DefaultComponentFactory.getInstance().createLabel("@IkePacheco");
+		lblNewJgoodiesLabel.setForeground(new Color(98, 98, 98));
+		lblNewJgoodiesLabel.setBounds(6, 223, 102, 16);
+		bg.add(lblNewJgoodiesLabel);
 	}
 }

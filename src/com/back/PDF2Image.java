@@ -3,6 +3,8 @@ package com.back;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -12,8 +14,8 @@ import org.apache.pdfbox.tools.imageio.ImageIOUtil;
 
 public class PDF2Image extends PDF2File{
 	
-	public PDF2Image(String _filePathInput, String _filePathOutput, String _extensionOutput, JProgressBar _progressBar) {
-		super(_filePathInput,_filePathOutput,_extensionOutput, _progressBar);
+	public PDF2Image(String _filePathInput, String _filePathOutput, String _extensionOutput, JProgressBar _progressBar, JLabel _progressLog, JButton _btnConvert) {
+		super(_filePathInput,_filePathOutput,_extensionOutput, _progressBar, _progressLog, _btnConvert);
 	}
 	
 
@@ -25,6 +27,7 @@ public class PDF2Image extends PDF2File{
 	
 	private void GenerateImageFromPDF() {
 		try {
+			btnConvert.setEnabled(false);
 			double percentConverted;
 			if(!filePathInput.isBlank() && !filePathOutput.isBlank()) {
 			
@@ -40,7 +43,9 @@ public class PDF2Image extends PDF2File{
 					
 					progressBar.setValue(Integer.parseInt(percent));
 					
-					System.out.println("Converted " + percent + "% of " + pdf.getNumberOfPages() + "pages.");
+					progressLog.setText("Converted " + (page+1) + " of " + pdf.getNumberOfPages() + " pages.");
+					
+					System.out.println("Converted " + percent + "% of " + pdf.getNumberOfPages() + " pages.");
 			    }
 				pdf.close();
 			}
@@ -51,6 +56,6 @@ public class PDF2Image extends PDF2File{
 		}
 		progressBar.setIndeterminate(false);
 		progressBar.setValue(100);
-		
+		btnConvert.setEnabled(true);
 	}
 }
