@@ -57,10 +57,9 @@ public class MainApp extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtFileInputLocation;
 	private JTextField txtFileOutputLocation;
-	JProgressBar progressBar;
 	@SuppressWarnings("rawtypes")
 	JComboBox boxTypeToConvert;
-	
+	JProgressBar progressBar;
 
 	/**
 	 * Launch the application.
@@ -204,6 +203,7 @@ public class MainApp extends JFrame {
 		btnSelectFolderOutput.setBounds(351, 132, 112, 28);
 		contentPane.add(btnSelectFolderOutput);
 		
+		
 		JButton btnConvert = new JButton("CONVERT");
 		btnConvert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -221,6 +221,7 @@ public class MainApp extends JFrame {
 								
 								
 								PDF2HTML pdf2html;
+								PDF2Image pdf2image;
 								
 								String extensionFile = "." + boxTypeToConvert.getSelectedItem().toString().toLowerCase();
 								
@@ -234,32 +235,31 @@ public class MainApp extends JFrame {
 										typeConvertionFile = pdf2html;
 										break;
 									case ".jpeg":
-										pdf2html = new PDF2HTML(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
-										typeConvertionFile = pdf2html;
+										pdf2image = new PDF2Image(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
+										typeConvertionFile = pdf2image;
 										break;
 									case ".jpg":
-										pdf2html = new PDF2HTML(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
-										typeConvertionFile = pdf2html;
+										pdf2image = new PDF2Image(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
+										typeConvertionFile = pdf2image;
 										break;
 									case ".gif":
-										pdf2html = new PDF2HTML(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
-										typeConvertionFile = pdf2html;
+										pdf2image = new PDF2Image(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
+										typeConvertionFile = pdf2image;
 										break;
 									case ".html":
 										pdf2html = new PDF2HTML(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
 										typeConvertionFile = pdf2html;
 										break;
 									case ".png":
-										pdf2html = new PDF2HTML(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
-										typeConvertionFile = pdf2html;
+										pdf2image = new PDF2Image(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
+										typeConvertionFile = pdf2image;
 										break;
 									case ".txt":
-										pdf2html = new PDF2HTML(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
-										typeConvertionFile = pdf2html;
+										
 										break;
 									case ".tiff":
-										pdf2html = new PDF2HTML(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
-										typeConvertionFile = pdf2html;
+										pdf2image = new PDF2Image(txtFileInputLocation.getText(),txtFileOutputLocation.getText(),extensionFile, progressBar);
+										typeConvertionFile = pdf2image;
 										break;
 									default:
 										pdf2html = null;
@@ -288,6 +288,16 @@ public class MainApp extends JFrame {
 		btnConvert.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 21));
 		btnConvert.setBounds(153, 186, 160, 46);
 		contentPane.add(btnConvert);
+		
+		
+		
+		progressBar = new JProgressBar();
+		progressBar.setRequestFocusEnabled(false);
+		progressBar.setBorder(new CompoundBorder());
+		progressBar.setBounds(155, 182, 156, 16);
+		contentPane.add(progressBar);
+		
+		
 		
 		boxTypeToConvert = new JComboBox();
 		boxTypeToConvert.setBackground(new Color(35, 35, 35));
@@ -363,10 +373,5 @@ public class MainApp extends JFrame {
 		PDFTO.setHorizontalTextPosition(SwingConstants.RIGHT);
 		PDFTO.setBounds(77, 26, 135, 48);
 		bg.add(PDFTO);
-		
-		progressBar = new JProgressBar();
-		progressBar.setRequestFocusEnabled(false);
-		progressBar.setBounds(147, 165, 161, 12);
-		bg.add(progressBar);
 	}
 }

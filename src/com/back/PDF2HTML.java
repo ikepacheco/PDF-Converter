@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.io.Writer;
 
-import javax.swing.JProgressBar;
+import javax.swing.JProgressBar;	
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.fit.pdfdom.PDFDomTree;
